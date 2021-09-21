@@ -10,7 +10,7 @@ IMAGEM7 = [-1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, -1, 1, 1, 1, 1, -1, 1, 1,
 PADRAO_DESCONHECIDO = [1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1]
 padroesExercicio = [IMAGEM1, IMAGEM2, IMAGEM3, IMAGEM4, IMAGEM5, IMAGEM6, IMAGEM7]
 
-MAX_ITERATIONS = 10
+ITERACOES_MAXIMA = 10
 
 def inicializarMatriz():
     matriz = []
@@ -47,12 +47,12 @@ def gerarMatrizPesos():
     return matrizPeso
 
 
-def treinar(pesos, padraoDesconhecido, counter):
-    if counter == MAX_ITERATIONS:
+def treinar(pesos, padraoDesconhecido, contador):
+    if contador == ITERACOES_MAXIMA:
         print("FALHOU")
         return
 
-    counter += 1
+    contador += 1
 
     padraoY = [0 for i in range(len(padraoDesconhecido))]
 
@@ -73,12 +73,12 @@ def treinar(pesos, padraoDesconhecido, counter):
             break
 
     if not convergiu:
-        treinar(pesos, padraoY, counter)
+        treinar(pesos, padraoY, contador)
     else:
-        print(f"\nCONVERGIU na {counter}ª vez")
+        print(f"\nCONVERGIU na {contador}ª vez")
 
 
 if __name__ == '__main__':
     pesos = gerarMatrizPesos()
-    counter = 0
-    treinar(pesos, PADRAO_DESCONHECIDO, counter)
+    contador = 0
+    treinar(pesos, PADRAO_DESCONHECIDO, contador)
